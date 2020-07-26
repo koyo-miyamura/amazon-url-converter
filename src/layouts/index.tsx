@@ -26,13 +26,26 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: 1080,
           padding: `0 1.0875rem 1.45rem`,
+          textAlign: "center",
         }}
       >
         <main>{children}</main>
-        <footer>© {new Date().getFullYear()} koyo-miyamura</footer>
       </div>
+      <footer
+        style={{
+          width: "100%",
+          position: "fixed",
+          bottom: 0,
+          background: "#5B616F",
+          padding: `10px`,
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        © {new Date().getFullYear()} koyo-miyamura
+      </footer>
     </>
   )
 }

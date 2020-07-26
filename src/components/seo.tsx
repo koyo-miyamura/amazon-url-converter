@@ -13,15 +13,9 @@ type SEOProps = {
   description?: string
   lang?: string
   metaProps?: Meta[]
-  title: string
 }
 
-const SEO: FC<SEOProps> = ({
-  description,
-  lang = "jp",
-  metaProps = [],
-  title = "",
-}) => {
+const SEO: FC<SEOProps> = ({ description, lang = "jp", metaProps = [] }) => {
   const data: SiteQuery = useStaticQuery(
     graphql`
       query Site {
@@ -35,9 +29,9 @@ const SEO: FC<SEOProps> = ({
       }
     `
   )
+  const title = data.site?.siteMetadata?.title || ""
 
   const metaDescription = description || data.site?.siteMetadata?.description
-
   const defaultMetas: Meta[] = [
     {
       name: `description`,
@@ -81,7 +75,6 @@ const SEO: FC<SEOProps> = ({
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${data.site?.siteMetadata?.title}`}
       meta={meta}
     />
   )
