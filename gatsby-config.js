@@ -1,8 +1,8 @@
 require("ts-node").register({ files: true })
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Template!`,
+    title: `Amazon URL Converter`,
+    description: `Convert URL of Amazon into essential one`,
     author: `koyo-miyamura`,
   },
   plugins: [
