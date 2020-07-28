@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react"
 import { PageProps } from "gatsby"
+import { toast } from "react-toastify"
 
 import SEO from "../components/seo"
 
@@ -25,6 +26,20 @@ const IndexPage: FC<PageProps> = () => {
 
   const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
+  }
+
+  const handleClickCopy = () => {
+    const copyFrom = document.createElement("textarea")
+    copyFrom.textContent = result
+
+    const bodyElm = document.getElementsByTagName("body")[0]
+    bodyElm.appendChild(copyFrom)
+
+    copyFrom.select()
+    if (document.execCommand("copy")) {
+      toast.info("Copied!")
+    }
+    bodyElm.removeChild(copyFrom)
   }
 
   return (
@@ -54,25 +69,67 @@ const IndexPage: FC<PageProps> = () => {
           }}
         />
       </div>
-      <p>
-        {result && (
-          <a
-            href={result}
+      {result && (
+        <>
+          <p>
+            <a
+              href={result}
+              style={{
+                fontWeight: "bold",
+                textDecoration: "none",
+                background: "darkslategray",
+                color: "white",
+                padding: "5px 10px",
+                borderRadius: "20px",
+                fontFamily: "Avenir,Arial",
+              }}
+            >
+              Move to the link
+            </a>
+          </p>
+
+          <div
+            className={result && "animate__animated animate__fadeIn"}
             style={{
-              fontWeight: "bold",
-              textDecoration: "none",
-              background: "darkslategray",
-              color: "white",
-              padding: "5px 10px",
-              borderRadius: "20px",
-              fontFamily: "Avenir,Arial",
+              display: "inline-block",
+              position: "relative",
+              padding: "30px 10px 7px",
+              margin: "2em 0",
+              border: "solid 2px darkslategray",
             }}
           >
-            Move to the link
-          </a>
-        )}
-      </p>
-      <p>{result}</p>
+            <span
+              style={{
+                position: "absolute",
+                display: "inline-block",
+                top: "-2px",
+                left: "-2px",
+                padding: "0 9px",
+                height: "25px",
+                lineHeight: "25px",
+                fontSize: "17px",
+                background: "darkslategray",
+                color: "#ffffff",
+                fontWeight: "bold",
+              }}
+              onClick={handleClickCopy}
+            >
+              Copy
+            </span>
+            <p
+              style={{
+                margin: "0",
+                padding: "0",
+                color: "darkslategray",
+                fontWeight: "bolder",
+                overflowWrap: "break-word",
+              }}
+            >
+              {result}
+            </p>
+          </div>
+        </>
+      )}
     </>
   )
 }

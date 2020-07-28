@@ -1,6 +1,9 @@
 import React, { FC } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import "normalize.css"
+import "animate.css"
 
 import Header from "../components/header"
 import { SiteTitleQuery } from "../../types/graphql-types"
@@ -23,6 +26,14 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site?.siteMetadata?.title || ""} />
+      <ToastContainer
+        style={{
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+        position="top-center"
+        hideProgressBar
+      />
       <div
         style={{
           margin: `0 auto`,
