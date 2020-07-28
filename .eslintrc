@@ -8,7 +8,6 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
     "plugin:jest/recommended",
     "airbnb",
     "plugin:import/errors",
@@ -39,7 +38,6 @@
     "@typescript-eslint",
     "import",
     "jest",
-    "jsx-a11y",
     "prefer-arrow",
     "prettier",
     "react",
