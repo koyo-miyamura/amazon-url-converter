@@ -9,6 +9,11 @@ const IndexPage: FC<PageProps> = () => {
   const [result, setResult] = useState("")
 
   const convertUrl = (urlText: string) => {
+    if (urlText.startsWith("https://www.amazon.co.jp/gp/product")) {
+      const re = /(https:\/\/www\.amazon\.co\.jp).*(\/gp\/product\/[0-9a-zA-Z]*).*/
+
+      return urlText.replace(re, "$1$2")
+    }
     const re = /(https:\/\/www\.amazon\.co\.jp).*(\/dp\/[0-9a-zA-Z]*).*/
 
     return urlText.replace(re, "$1$2")
